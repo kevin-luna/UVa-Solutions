@@ -1,7 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
 #define fastio ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
-typedef vector<int> vi;
 typedef map<string,string> mss;
 typedef map<string,int> msi;
 class UFDS{
@@ -46,6 +45,7 @@ class UFDS{
     }
 };
 int main(){
+    fastio
     int t,f;
     cin>>t;
     UFDS networks;
