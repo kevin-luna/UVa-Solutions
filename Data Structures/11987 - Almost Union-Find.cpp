@@ -4,10 +4,8 @@ using namespace std;
 class UFDS{
     private:
         int parent[200005],size[200005],sum[200005];
-        int elements;
     public:
     UFDS(int n){
-        elements=n;
         for (size_t i = 1; i <= n; i++){
             parent[i]=100000+i;
             parent[100000+i]=100000+i;
