@@ -25,14 +25,10 @@ int main(){
         }
         if(mx>n || people>maxcap){cout<<"0\n";continue;}
         sort(teams,teams+m,greater<pii>());
-        // sort(tables,tables+n,greater<pii>());
-        // for (size_t i=0;i<m;i++)cout<<teams[i].first<<" "<<teams[i].second<<"\n";cout<<"\n";
-        // for(size_t i=0;i<n;i++)cout<<tables[i].first<<" "<<tables[i].second<<"\n";cout<<"\n";
         memset(ans,0,sizeof(ans));
-        for (size_t i = 0; i < m; i++)//por cada equipo
+        for (size_t i = 0; i < m; i++)
         {
             sort(tables,tables+n,greater<pii>());
-            //asignar mesas
             for (size_t j = 0; j < n && teams[i].first>0; j++)
             {
                 if(tables[j].first>0){
@@ -60,6 +56,5 @@ int main(){
                 cout<<"\n";
             }
         }
-
     }
 }
