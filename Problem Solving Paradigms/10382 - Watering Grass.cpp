@@ -4,20 +4,18 @@ using namespace std;
 typedef pair<int,int> pii;
 struct sprinkler{
     int c;
-    float radius;
-    float left;
-    float r;
+    float radius,left,right;
     bool operator<(sprinkler const &a){
         return (left<a.left)?true:false;
     }
 };
-double l,w,L,R;
-bool covered(sprinkler i,double p){return (i.left<=p && i.r>=p);}
-bool inside(pii i,sprinkler j){return i.first<=j.left && i.second>=j.r;}
+sprinkler s[10005];
+bool covered(sprinkler i,double p){return (i.left<=p && i.right>=p);}
+bool inside(pii i,sprinkler j){return i.first<=j.left && i.second>=j.right;}
 int main(){
     fastio
     int n;
-    sprinkler s[10005];
+    double l,w,L,R;
     while (cin>>n>>l>>w)
     {
         double r=0.0,tmp=0.0;
@@ -27,26 +25,26 @@ int main(){
             r=s[i].radius;
             tmp=r*r-(w*w/4.0);
             s[i].left= (tmp<0)? (-1):s[i].c-sqrt(tmp);
-            s[i].r= (tmp<0)? (-1):s[i].c+sqrt(tmp);
+            s[i].right= (tmp<0)? (-1):s[i].c+sqrt(tmp);
         }
         sort(s,s+n);
         int ans=1;
-        L=0.0,R=0.0;
+        L=R=0.0;
         for (size_t i = 0; i < n; i++)
         {
             r=s[i].radius;
-            if(s[i].r<L ||r*2<w || inside({L,R},s[i]))continue;
+            if(s[i].right<L ||r*2<w || inside({L,R},s[i]))continue;
             if(R>=l)break;
             if(covered(s[i],L)){
-                if(s[i].r>R){
-                    R=s[i].r;
+                if(s[i].right>R){
+                    R=s[i].right;
                 }
             }else{
                 if(covered(s[i],R)){
                     ++ans;
                     L=R;
-                    if(s[i].r>R){
-                        R=s[i].r;
+                    if(s[i].right>R){
+                        R=s[i].right;
                     }
                 }else{
                     ans=-1;
